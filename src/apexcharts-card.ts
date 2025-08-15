@@ -12,7 +12,10 @@ import {
   HistoryPoint,
   minmax_type,
 } from './types';
-import { handleAction, HomeAssistant } from 'custom-card-helpers';
+import {
+  handleAction,
+  HomeAssistant
+} from "custom-card-helpers";
 import localForage from 'localforage';
 import * as pjson from '../package.json';
 import {
@@ -41,7 +44,7 @@ import {
   isUsingServerTimezone,
   computeTimezoneDiffWithLocal,
 } from './utils';
-import ApexCharts from 'apexcharts';
+import ApexCharts, { ApexOptions} from 'apexcharts/dist/apexcharts.esm.js';
 import { Ripple } from '@material/mwc-ripple';
 import { stylesApex } from './styles';
 import { HassEntity } from 'home-assistant-js-websocket';
@@ -84,7 +87,6 @@ import parse from 'parse-duration';
 import tinycolor from '@ctrl/tinycolor';
 import { actionHandler } from './action-handler-directive';
 import { OverrideFrontendLocaleData } from './types-ha';
-
 /* eslint no-console: 0 */
 console.info(
   `%c APEXCHARTS-CARD %c v${pjson.version} `,
@@ -199,7 +201,7 @@ class ChartsCard extends LitElement {
     this._updating = false;
     super.disconnectedCallback();
   }
-
+ 
   private _updateOnInterval(): void {
     if (!this._updating && this._hass) {
       this._updating = true;
@@ -775,7 +777,32 @@ class ChartsCard extends LitElement {
         (layout as any).chart.id = Math.random().toString(36).substring(7);
       }
       this._apexChart = new ApexCharts(graph, layout);
+
+      const ann: any =
+        (this._apexChart as any).annotations
+          ?? Object.values(this._apexChart as any)
+              .find((v: unknown) => v && typeof (v as any).addPointAnnotation === 'function');
+      if (ann && !ann.addPointAnnotationExternal) {
+        ann.addPointAnnotationExternal = ann.addPointAnnotation.bind(ann);
+      }
+
       this._apexChart.render();
+
+      const waitForPointLayer = (cb: () => void) => {
+        const poll = () =>
+          this._apexChart!.el!.querySelector('.apexcharts-point-annotations')
+            ? cb()
+            : requestAnimationFrame(poll);
+        poll();
+      };
+      waitForPointLayer(() => {
+        const opts = layout as ApexOptions;
+        const pts = opts.annotations?.points ?? [];
+        pts.forEach(p => this._apexChart!.addPointAnnotationExternal(p, true));
+      });      
+
+
+
       if (this._config.series_in_brush.length) {
         const brush = this.shadowRoot.querySelector('#brush');
         this._apexBrush = new ApexCharts(
