@@ -45,7 +45,7 @@ import {
   isUsingServerTimezone,
   computeTimezoneDiffWithLocal,
 } from './utils';
-import ApexCharts, { ApexOptions} from 'apexcharts/dist/apexcharts.esm.js';
+import ApexCharts from 'apexcharts';
 import { Ripple } from '@material/mwc-ripple';
 import { stylesApex } from './styles';
 import { HassEntity } from 'home-assistant-js-websocket';
