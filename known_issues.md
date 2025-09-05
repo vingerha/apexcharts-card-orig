@@ -11,11 +11,14 @@ Check in the open and (!) closed issues for possible workarounds.
 **This apexchard-card repo will not pursue/request changes of other integrations/cards**
 
 == ref. ===
+
 Until the edata integration is updated by its author, you might be able to manually edit the file /custom_components/edata/www/edata-card.js and replace
 import "https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.js?module";
 with
 import "https://cdnjs.cloudflare.com/ajax/libs/apexcharts/5.3.3/apexcharts.min.js?module";
+
 == end ref. ===
+
 Similar may work for the vehicle-info card.
 
 2. Graphs cut-off
