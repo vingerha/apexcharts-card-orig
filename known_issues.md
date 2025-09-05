@@ -6,9 +6,12 @@
 - edata
 - verhicle card
 - possibly other
-Check in the open and (!) closed issues for posisble workarounds
+
+Check in the open and (!) closed issues for possible workarounds
 
 2. Graphs partly displayed
 Functionality in dashboard/view with Sections are now better supported but also shown challenges
 - horizontal stack
 Experiment with the new (!) config parameter ```section_mode``` https://github.com/RomRider/apexcharts-card?tab=readme-ov-file#main-options
+
+Check in the open and (!) closed issues for possible workarounds
