@@ -11,6 +11,7 @@ assignees: ''
 - [ ] I updated the card to the latest version available
 - [ ] I cleared the cache of my browser
 - [ ] I verified that I'm really running the lastest version in my browser console
+- [ ] I checked if there are known issues with the release, [Known Issues](https://github.com/RomRider/apexcharts-card-orig/blob/add_known_issues/known_issues.md)
 - [ ] I checked if there is another issue opened with the same problem
 
 **Describe the bug**
