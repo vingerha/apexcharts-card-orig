@@ -8,6 +8,8 @@
 
 # ApexCharts Card by [@RomRider](https://github.com/RomRider) <!-- omit in toc -->
 
+## [Known Issues](https://github.com/RomRider/apexcharts-card-orig/blob/add_known_issues/known_issues.md)
+
 ![Header](https://github.com/RomRider/apexcharts-card/raw/master/docs/Header.png)
 
 This is a highly customizable graph card for [Home-Assistant](https://www.home-assistant.io)'s Lovelace UI.<br/>
